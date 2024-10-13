@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-12 mb-3">
                     <label class="control-label" for="type">Seleziona il tipo di progetto</label>
-                        <select class="form-control" name="type_id" required>
+                        <select class="form-control" name="type_id">
                             <option value="">-- Seleziona un tipo --</option>
                             @foreach ($types as $type)
                                 <option value="{{ $type->id }}" @selected($type->id == old('type_id'))>{{ $type->name }}</option>
@@ -49,7 +49,12 @@
                         <div class="control-label">Seleziona le tecnologie</div>
                         @foreach ($technologies as $technology)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" id="">
+                                <input class="form-check-input" 
+                                    type="checkbox" 
+                                    name="technologies[]" 
+                                    value="{{ $technology->id }}" 
+                                    {{ is_array(old('technologies')) && in_array($technology->id, old('technologies')) ? 'checked' : '' }} 
+                                    id="technology_{{ $technology->id }}">
                                 <label class="form-check-label" for="technology_{{ $technology->id }}">
                                     {{ $technology->name }}
                                 </label>

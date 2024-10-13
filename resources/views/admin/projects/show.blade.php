@@ -17,12 +17,19 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h5 class="card-title">Dettagli del progetto</h5>
-                        <ul class="list-unstyled">
-                            <li><strong>Slug:</strong> {{ $project->slug }}</li>
-                            <li><strong>Description:</strong> {{ $project->description ?? 'Nessuna descrizione disponibile' }}</li>
-                            <li><strong>Date:</strong> {{ $project->date }}</li>
-                            <li><strong>Type:</strong> {{ $project->type ? $project->type->name : 'Nessun tipo assegnato' }}</li>
-                        </ul>
+                            <ul class="list-unstyled">
+                                <li><strong>Slug:</strong> {{ $project->slug }}</li>
+                                <li><strong>Description:</strong> {{ $project->description ?? 'Nessuna descrizione disponibile' }}</li>
+                                <li><strong>Date:</strong> {{ $project->date }}</li>
+                                <li><strong>Type:</strong> {{ $project->type ? $project->type->name : 'Nessun tipo assegnato' }}</li>
+                                <li><strong>Tipologia di lavoro:</strong>
+                                    @if ($project->type)
+                                        <strong>{{ $project->type->name }}</strong>
+                                    @else
+                                        <strong>Non specificata</strong>
+                                    @endif
+                                </li>
+                            </ul>
                         <div class="mt-4">
                             <h5>Immagine del Progetto</h5>
                             <img src="{{ $project->image ? asset('storage/' . $project->image) : 'https://via.placeholder.com/600x400' }}" class="img-fluid rounded">
