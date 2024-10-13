@@ -46,6 +46,17 @@
                         @enderror
                     </div>
                     <div class="col-12 mb-3">
+                        <div class="control-label">Seleziona le tecnologie</div>
+                        @foreach ($technologies as $technology)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" id="">
+                                <label class="form-check-label" for="technology_{{ $technology->id }}">
+                                    {{ $technology->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="col-12 mb-3">
                         <label for="date" class="control-label">Data</label>
                         <input type="date" name="date" id="date" class="form-control" value="{{ old('date') }}" >
                     </div>
