@@ -114,10 +114,18 @@ class ProjectController extends Controller
         $form_data['slug'] = Project::generateSlug($form_data['title']);
 
         $project->fill($form_data);
+
+        if($request->has('technologies')){
+            $project->technologies()->sync($request->technologies);
+        } else {
+            $project->technologies()->sync([]);  
+        }
+
         $project->save();
 
         return redirect()->route('admin.projects.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
