@@ -23,11 +23,11 @@
                                 <li><strong>Date:</strong> {{ $project->date }}</li>
                                 <li><strong>Type:</strong> {{ $project->type ? $project->type->name : 'Nessun tipo assegnato' }}</li>
                                 <li><strong>Tipologia di lavoro:</strong>
-                                    @if ($project->type)
-                                        <strong>{{ $project->type->name }}</strong>
-                                    @else
-                                        <strong>Non specificata</strong>
-                                    @endif
+                                    @forelse ($project->technologies as $technology)
+                                        <strong>{{ $technology->name }}</strong>
+                                    @empty
+                                        nessuna tecnologia per il progetto
+                                    @endforelse
                                 </li>
                             </ul>
                         <div class="mt-4">
